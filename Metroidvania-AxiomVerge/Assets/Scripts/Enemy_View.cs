@@ -8,7 +8,7 @@ public class Enemy_View : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,5 +24,11 @@ public class Enemy_View : MonoBehaviour
             playerDetected = true;
             Debug.Log("Player detected");
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        playerDetected = false;
+        Debug.Log("Player detected");
     }
 }

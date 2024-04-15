@@ -15,6 +15,7 @@ public class Enemy_AI : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject player;
     private float distanceToPlayer;
+    private Material mat;
 
     [Range(3, 15)][SerializeField] int maxDis;
     [SerializeField] Transform[] navPoints;
@@ -28,13 +29,15 @@ public class Enemy_AI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         currentPointIndex = 0;
         enemyView = lightBeam.GetComponent<Enemy_View>();
+        mat = lightBeam.GetComponent<Renderer>().material;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
         DetermineStates();
-        HandleStates();
     }
 
     private void DetermineStates()
@@ -48,10 +51,12 @@ public class Enemy_AI : MonoBehaviour
         else if (enemyView.playerDetected == true && distanceToPlayer <= maxDis)
         {
             currentState = AIState.chase;
+            mat.color = Color.red;
         }
         else
         {
             currentState = AIState.patrol;
+            mat.color = Color.yellow;
         }
         HandleStates();
     }
