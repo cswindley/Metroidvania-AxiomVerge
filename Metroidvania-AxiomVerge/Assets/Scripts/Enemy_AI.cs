@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class Enemy_AI : MonoBehaviour
 {
     [Tooltip("This will be the view of the enemy, if player enters enemy will track and follow")][SerializeField] GameObject lightBeam;
@@ -21,6 +22,8 @@ public class Enemy_AI : MonoBehaviour
     [SerializeField] Transform[] navPoints;
     private int currentPointIndex;
 
+    public bool isStunned = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,25 +33,27 @@ public class Enemy_AI : MonoBehaviour
         currentPointIndex = 0;
         enemyView = lightBeam.GetComponent<Enemy_View>();
         mat = lightBeam.GetComponent<Renderer>().material;
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        DetermineStates();
+        if (!isStunned)
+        {
+            DetermineStates();
+        }       
     }
 
     private void DetermineStates()
     {
-        distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        /*distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
         if (distanceToPlayer <= 3.0f)
         {
             currentState = AIState.attack;
         }
-        else if (enemyView.playerDetected == true && distanceToPlayer <= maxDis)
+        else if (enemyView.playerDetected == true && distanceToPlayer <= maxDis)*/
+        if (enemyView.playerDetected)
         {
             currentState = AIState.chase;
             mat.color = Color.red;
@@ -87,5 +92,22 @@ public class Enemy_AI : MonoBehaviour
                 Debug.LogError("Unknown State");
                 break;
         }
+    }
+
+    public IEnumerator Stun()
+    {
+        mat.color = Color.green;
+
+        Debug.Log("stunned");
+
+        isStunned = true;
+        agent.isStopped = true;
+
+        yield return new WaitForSeconds(3.0f);
+
+        agent.isStopped = false;
+        isStunned = false;
+
+        mat.color = Color.yellow;
     }
 }
