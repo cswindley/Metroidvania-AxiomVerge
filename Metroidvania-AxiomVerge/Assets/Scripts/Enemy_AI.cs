@@ -17,6 +17,7 @@ public class Enemy_AI : MonoBehaviour
     private GameObject player;
     private float distanceToPlayer;
     private Material mat;
+    [SerializeField] ParticleSystem ps;
 
     [Range(3, 15)][SerializeField] int maxDis;
     [SerializeField] Transform[] navPoints;
@@ -97,8 +98,8 @@ public class Enemy_AI : MonoBehaviour
     public IEnumerator Stun()
     {
         mat.color = Color.green;
-
         Debug.Log("stunned");
+        ps.Play();
 
         isStunned = true;
         agent.isStopped = true;
