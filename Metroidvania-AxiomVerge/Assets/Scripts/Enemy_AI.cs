@@ -4,7 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 public class Enemy_AI : MonoBehaviour
 {
     [Tooltip("This will be the view of the enemy, if player enters enemy will track and follow")][SerializeField] GameObject lightBeam;
