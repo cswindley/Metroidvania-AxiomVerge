@@ -6,8 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    public bool isPaused;
+    public bool isPaused = false;
     public GameObject pauseMenu;
+
+    private void Update()
+    {
+        OnEscPress();
+    }
     public void OnFirstPersonLevelPress()
     {
         SceneManager.LoadScene("Level1-fp");
@@ -18,23 +23,41 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("Level1-tp");
     }
 
+    public void OnMenuButtonPress()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void OnApplicationQuit()
+    {
+        Application.Quit();
+    }
+
     public void OnEscPress()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
-            isPaused = true;
-            if (isPaused)
-            {
-                pauseMenu.SetActive(true);
-                Time.timeScale = 0f;
-                if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
-                {
-                    pauseMenu.SetActive(true);
-                    Time.timeScale = 0f;
-                    isPaused = false;
-                }
-            }
+            isPaused = !isPaused;
+            Paused();
         }
 
+    }
+
+    public void Paused()
+    {
+        if (isPaused)
+        {
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pauseMenu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 }
