@@ -25,6 +25,7 @@ public class Enemy_AI : MonoBehaviour
     private int currentPointIndex;
 
     public bool isStunned = false;
+    public bool isPaused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +41,15 @@ public class Enemy_AI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isStunned)
+        if (!isStunned && !isPaused)
         {
             DetermineStates();
         }       
+
+        if (isPaused)
+        {
+            //transform.
+        }
     }
 
     private void DetermineStates()
@@ -77,12 +83,15 @@ public class Enemy_AI : MonoBehaviour
                 if (!agent.pathPending && agent.remainingDistance <= 0.5f)
                 {
                     agent.SetDestination(navPoints[currentPointIndex].position);
+
                     currentPointIndex++;
 
                     if (currentPointIndex >= navPoints.Length)
                     {
                         currentPointIndex = 0;
                     }
+                    
+                    StartCoroutine(Pause());
                 }
                 break;
             //Sets des to player
@@ -116,6 +125,15 @@ public class Enemy_AI : MonoBehaviour
         CalculateClosestNavPos();
     }
 
+    public IEnumerator Pause()
+    {
+        isPaused = true;
+        agent.isStopped = true;
+        yield return new WaitForSeconds(1.0f);
+        agent.isStopped = false;
+        isPaused = false;
+    }
+
     public void CalculateClosestNavPos()
     {
         float[] distance = new float[navPoints.Length];
@@ -129,7 +147,6 @@ public class Enemy_AI : MonoBehaviour
                 closestNavPointIndex = i;
             }
         }
-        Debug.Log(closestNavPointIndex);
         currentPointIndex = closestNavPointIndex;
     }
 }

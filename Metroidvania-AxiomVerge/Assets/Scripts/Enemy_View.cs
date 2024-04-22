@@ -24,8 +24,7 @@ public class Enemy_View : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {                       
-            
+        {                             
             enemyAIRef.CalculateClosestNavPos();
             enemyAIRef.playerDetected = false;
         }
