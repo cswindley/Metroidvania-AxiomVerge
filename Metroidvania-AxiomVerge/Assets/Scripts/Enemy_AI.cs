@@ -7,11 +7,13 @@ using UnityEngine.AI;
 public class Enemy_AI : MonoBehaviour
 {
     [Tooltip("This will be the view of the enemy, if player enters enemy will track and follow")][SerializeField] GameObject lightBeam;
-    private Enemy_View enemyView;
+    //private Enemy_View enemyView;
 
-    enum AIState { patrol, chase, attack };
+    public enum AIState { patrol, chase, attack };
 
-    private AIState currentState;
+    public bool playerDetected = false;
+
+    public AIState currentState;
     private NavMeshAgent agent;
     private GameObject player;
     private float distanceToPlayer;
@@ -31,7 +33,7 @@ public class Enemy_AI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
         currentPointIndex = 0;
-        enemyView = lightBeam.GetComponent<Enemy_View>();
+        //enemyView = lightBeam.GetComponent<Enemy_View>();
         mat = lightBeam.GetComponent<Renderer>().material;
     }
 
@@ -53,7 +55,8 @@ public class Enemy_AI : MonoBehaviour
             currentState = AIState.attack;
         }
         else if (enemyView.playerDetected == true && distanceToPlayer <= maxDis)*/
-        if (enemyView.playerDetected)
+        //if (enemyView.playerDetected)
+        if(playerDetected)
         {
             currentState = AIState.chase;
             mat.color = Color.red;
@@ -66,7 +69,7 @@ public class Enemy_AI : MonoBehaviour
         HandleStates();
     }
 
-    private void HandleStates()
+    public void HandleStates()
     {
         switch (currentState)
         {
@@ -109,5 +112,24 @@ public class Enemy_AI : MonoBehaviour
         isStunned = false;
 
         mat.color = Color.yellow;
+        
+        CalculateClosestNavPos();
+    }
+
+    public void CalculateClosestNavPos()
+    {
+        float[] distance = new float[navPoints.Length];
+        int closestNavPointIndex = 0;
+
+        for (int i = 0; i < navPoints.Length; i++)
+        {
+            distance[i] = Vector3.Distance(transform.position, navPoints[i].position);
+            if (distance[i] < distance[closestNavPointIndex])
+            {
+                closestNavPointIndex = i;
+            }
+        }
+        Debug.Log(closestNavPointIndex);
+        currentPointIndex = closestNavPointIndex;
     }
 }

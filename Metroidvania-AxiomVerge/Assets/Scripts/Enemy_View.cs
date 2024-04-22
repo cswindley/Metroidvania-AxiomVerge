@@ -4,31 +4,30 @@ using UnityEngine;
 
 public class Enemy_View : MonoBehaviour
 {
-    public bool playerDetected = false;
-    // Start is called before the first frame update
+    //public bool playerDetected = false;
+    private Enemy_AI enemyAIRef;
+
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        enemyAIRef = GetComponentInParent<Enemy_AI>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.CompareTag("Player"))
         {
-            playerDetected = true;
+            enemyAIRef.playerDetected = true;
             Debug.Log("Player detected");
         }
     }
-
+     
     private void OnTriggerExit(Collider other)
     {
-        playerDetected = false;
-        Debug.Log("Player detected");
+        if (other.gameObject.CompareTag("Player"))
+        {                       
+            
+            enemyAIRef.CalculateClosestNavPos();
+            enemyAIRef.playerDetected = false;
+        }
     }
 }

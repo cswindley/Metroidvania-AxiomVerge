@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
         if (col.CompareTag("EnemyStun"))
         {
             inStunRange = true;
-            pressEPrompt.SetActive(true);
+            //pressEPrompt.SetActive(true);
             enemyRef = col.gameObject.GetComponentInParent<Enemy_AI>();
         }
     }
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         if (col.CompareTag("EnemyStun"))
         {
             inStunRange = false;
-            pressEPrompt.SetActive(false);
+            //pressEPrompt.SetActive(false);
             enemyRef = null;
         }
     }
