@@ -2212,7 +2212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 750998db7fd03a34d9b732aa156d66fe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12632,6 +12632,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1676609100239073865, guid: 0d780173c250d334f80c9061373c8e4f, type: 3}
   m_PrefabInstance: {fileID: 586020424}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &591982813 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1340037861094024127, guid: d956391e4298cc543839cc9e1f412372, type: 3}
+  m_PrefabInstance: {fileID: 598453717}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &593970722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12830,7 +12835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6749286625087197254, guid: d956391e4298cc543839cc9e1f412372, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7412384554757982097, guid: d956391e4298cc543839cc9e1f412372, type: 3}
       propertyPath: m_Enabled
@@ -18806,12 +18811,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b2475f1c02ad14f8d7504ccfcc74a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightBeam: {fileID: 0}
+  lightBeam: {fileID: 401807080}
   playerDetected: 0
   currentState: 0
-  ps: {fileID: 0}
+  ps: {fileID: 591982813}
   maxDis: 0
-  navPoints: []
+  navPoints:
+  - {fileID: 372045121}
+  - {fileID: 1722858358}
+  - {fileID: 1952821705}
+  - {fileID: 1648205054}
   isStunned: 0
   isPaused: 0
 --- !u!195 &1104046329
