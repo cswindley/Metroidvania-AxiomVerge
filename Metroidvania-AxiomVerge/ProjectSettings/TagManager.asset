@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - EnemyStun
+  - RedGate
+  - BlueGate
+  - WinTransition
+  - FinalGate
+  - RedKeycard
+  - BlueKeycard
   layers:
   - Default
   - TransparentFX

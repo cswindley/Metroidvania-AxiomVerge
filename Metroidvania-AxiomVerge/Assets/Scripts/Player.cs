@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class Player : MonoBehaviour
     private Enemy_AI enemyRef;
 
     [SerializeField] GameObject pressEPrompt;
+
+    [SerializeField] GameObject blueLightBlank;
+    [SerializeField] GameObject blueLight;
+    [SerializeField] GameObject redLightBlank;
+    [SerializeField] GameObject redLight;
+    [SerializeField] GameObject redGate;
 
     void Update()
     {
@@ -25,6 +32,26 @@ public class Player : MonoBehaviour
             inStunRange = true;
             //pressEPrompt.SetActive(true);
             enemyRef = col.gameObject.GetComponentInParent<Enemy_AI>();
+        }
+
+        if (col.CompareTag("WinTransition"))
+        {
+            SceneManager.LoadScene("WinScene");
+        }
+
+        if (col.CompareTag("BlueKeycard"))
+        {
+            blueLight.SetActive(true);
+            blueLightBlank.SetActive(false);
+            Destroy(col.gameObject);
+        }
+
+        if (col.CompareTag("RedKeycard"))
+        {
+            redGate.SetActive(false);
+            redLight.SetActive(true);
+            redLightBlank.SetActive(false);
+            Destroy(col.gameObject);
         }
     }
 

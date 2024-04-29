@@ -28,6 +28,11 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void OnHelpButtonPress()
+    {
+        SceneManager.LoadScene("HelpScene");
+    }
+
     public void OnApplicationQuit()
     {
         Application.Quit();
