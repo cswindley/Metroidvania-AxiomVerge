@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 587455320314237754}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000041723246, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.215, z: 0}
+  m_LocalPosition: {x: 0, y: 1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4859,7 +4859,7 @@ Transform:
   m_GameObject: {fileID: 3644725127098528146}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.75}
+  m_LocalPosition: {x: 0, y: 1.04, z: -0.75}
   m_LocalScale: {x: 2.5, y: 1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4983,7 +4983,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6749286625087197254}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -9056706297790775429, guid: 750998db7fd03a34d9b732aa156d66fe, type: 3}
 --- !u!23 &5650178254355147311
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5048,7 +5048,7 @@ CapsuleCollider:
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.000000059604645, y: 0.84, z: -0.00000008940697}
 --- !u!114 &5457589670347055977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5062,6 +5062,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightBeam: {fileID: 9069941832747492932}
+  playerDetected: 0
+  currentState: 0
   ps: {fileID: 1340037861094024127}
   maxDis: 15
   navPoints:
@@ -5070,6 +5072,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   isStunned: 0
+  isPaused: 0
 --- !u!195 &2528148968818004939
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5088,8 +5091,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
+  m_Height: 2.01
+  m_BaseOffset: 0.06
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!54 &1376796187285842186
@@ -5145,11 +5148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41c7b19a414f01d4ba0ba73fc46266a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: 1.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41c7b19a414f01d4ba0ba73fc46266a7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0099985
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 41c7b19a414f01d4ba0ba73fc46266a7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5246,4 +5249,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8039def237fa2d645b33baf48eb47458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDetected: 0

@@ -14,4 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1-tp.unity
     guid: 78e295ebf7f93e54297133f613302497
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/HelpScene.unity
+    guid: de071859e41293f448d76658f0bd8dc2
+  - enabled: 1
+    path: Assets/Scenes/LossScene.unity
+    guid: 4c9f09de55015da46b3f9e35f179103e
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: 2295b633325a8454ba8b40e706bd993f
   m_configObjects: {}
