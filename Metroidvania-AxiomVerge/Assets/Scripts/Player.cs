@@ -16,11 +16,17 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject redLight;
     [SerializeField] GameObject redGate;
 
+    [SerializeField] private GameObject gate;
+
+    [SerializeField] private AudioClip stunSound;
+    [SerializeField] private AudioClip keycardSound;
+
     void Update()
     {
         if (inStunRange && Input.GetKeyDown(KeyCode.E) && !enemyRef.isStunned)
         {
             pressEPrompt.SetActive(false);
+            AudioManager.Instance.Play(stunSound);
             StartCoroutine(enemyRef.Stun());           
         }
     }
@@ -44,6 +50,9 @@ public class Player : MonoBehaviour
             blueLight.SetActive(true);
             blueLightBlank.SetActive(false);
             Destroy(col.gameObject);
+            Destroy(gate);
+            AudioManager.Instance.Play(keycardSound);
+            
         }
 
         if (col.CompareTag("RedKeycard"))
@@ -52,6 +61,8 @@ public class Player : MonoBehaviour
             redLight.SetActive(true);
             redLightBlank.SetActive(false);
             Destroy(col.gameObject);
+            
+            AudioManager.Instance.Play(keycardSound);
         }
     }
 
